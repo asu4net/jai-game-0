@@ -87,7 +87,7 @@ generate_comp_time_input_map :: () -> string {
     set_working_directory("bin");
     defer set_working_directory(cwd);
     
-    INPUT_ACTION_MAP_SRC :: "../data/input_map.txt";
+    INPUT_ACTION_MAP_SRC :: "data/input_map.txt";
 
     log("Looking for input action map in [%]", INPUT_ACTION_MAP_SRC);
     if File_Utils.file_exists(INPUT_ACTION_MAP_SRC) {
