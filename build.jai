@@ -17,7 +17,7 @@ Build_Flags :: enum_flags {
 Build_Args :: struct {
     exec_name := "game";
     out_dir := "bin";
-    build_file := "first.jai";
+    build_file := "game.jai";
     flags := Build_Flags.DEBUG; 
 }
 
