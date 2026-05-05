@@ -7,4 +7,5 @@ atlas/
 # Frecuent binaries.
 bin/**.exe
 bin/**.pdb
+bin/**.dll
 bin/imgui.ini
