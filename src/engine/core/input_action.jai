@@ -30,8 +30,6 @@ update_input_actions :: () {
 
 #scope_file
 
-#import "Enum_Array";
-
 input_actions_prev    : [Input_Action.COUNT] bool;
 input_actions_down    : [Input_Action.COUNT] bool;
 input_actions_pressed : [Input_Action.COUNT] bool;

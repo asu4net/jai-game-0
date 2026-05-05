@@ -49,14 +49,13 @@ clone_dependencies :: () {
     scope_set_working_directory("modules");
     
     // Depencencies
+    /*
     try_clone_dependency("SDL3"        ,"https://github.com/asu4net/jai-sdl3");
     try_clone_dependency("ImGui"       ,"https://github.com/asu4net/ImGui");
     try_clone_dependency("StbTrueType" ,"https://github.com/asu4net/StbTrueType");
     try_clone_dependency("Jaison"      ,"https://github.com/rluba/jaison");
-    try_clone_dependency("Queue"       ,"https://github.com/asu4net/Queue");
-    try_clone_dependency("Sparse_Set"  ,"https://github.com/asu4net/Sparse_Set");
-    try_clone_dependency("Enum_Array"  ,"https://github.com/rezich/Enumerated_Array");
-    
+    */
+
     copy_file("SDL3/windows/bin/x64/SDL3.dll", "../.out/SDL3.dll");
     copy_file("StbTrueType/libstbtruetype.dll", "../.out/libstbtruetype.dll");
 }
