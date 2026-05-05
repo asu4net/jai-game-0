@@ -13,8 +13,6 @@
 atlas/
 
 **.exe
-**.dll
-**.pdb
 
 # ImGui specific
 imgui.ini
