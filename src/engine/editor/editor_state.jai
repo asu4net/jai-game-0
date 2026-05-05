@@ -22,7 +22,7 @@ draw_editor :: () {
             }
             if ImGui.BeginMenu("Load") {
                 // Load all the prefabs
-                File_Utils.visit_files("assets/entities", true, null, (info: *File_Utils.File_Visit_Info, *void) {
+                File_Utils.visit_files("../data/entities", true, null, (info: *File_Utils.File_Visit_Info, *void) {
                     path, basename, ext := path_decomp(info.full_name ,,temp);
                     if ext != "json" {
                         return;
@@ -70,7 +70,7 @@ save_selected :: () {
     builder: String_Builder;
     slz_entity(*builder, entity ,,temp);
     text := builder_to_string(*builder ,,temp);
-    src  := tprint("assets/entities/%.json", get_name(entity) ,,temp);
+    src  := tprint("../data/entities/%.json", get_name(entity) ,,temp);
     File.write_entire_file(src, text);
 }
 

@@ -14,6 +14,7 @@
                 "type": "shell",
                 "args": [
                     "build.jai",
+                    "-x64",
                     "-",
                     "-ecs",
                     "-imgui",
@@ -38,9 +39,9 @@
                 "request": "launch",
                 "name": "debug",
                 "console": "externalTerminal",
-                "program": "${workspaceFolder}/bin/game.exe",
+                "program": "${workspaceFolder}/.out/game.exe",
                 "args": [],
-                "cwd": "${workspaceFolder}/bin",
+                "cwd": "${workspaceFolder}/.out/",
             }
         ]
     }

@@ -46,7 +46,7 @@ generate_comp_time_atlas :: () -> string {
 
     cwd := get_working_directory();
 
-    ASSETS_DIR :: "bin/assets";
+    ASSETS_DIR :: "../data";
 
     assets_dir_created := File.make_directory_if_it_does_not_exist(ASSETS_DIR, recursive = true);
     if !assets_dir_created {

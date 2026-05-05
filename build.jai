@@ -16,7 +16,7 @@ Build_Flags :: enum_flags {
 
 Build_Args :: struct {
     exec_name := "game";
-    out_dir := "bin";
+    out_dir := ".out";
     build_file := "game.jai";
     flags := Build_Flags.DEBUG; 
 }
@@ -44,6 +44,7 @@ clone_dependencies :: () {
         if file_exists(name) then return;
         run_command("git", "clone", url, name);
     }
+    make_directory_if_it_does_not_exist(".out");
     make_directory_if_it_does_not_exist("modules");
     scope_set_working_directory("modules");
     
@@ -56,8 +57,8 @@ clone_dependencies :: () {
     try_clone_dependency("Sparse_Set"  ,"https://github.com/asu4net/Sparse_Set");
     try_clone_dependency("Enum_Array"  ,"https://github.com/rezich/Enumerated_Array");
     
-    copy_file("SDL3/windows/bin/x64/SDL3.dll", "../bin/SDL3.dll");
-    copy_file("StbTrueType/libstbtruetype.dll", "../bin/libstbtruetype.dll");
+    copy_file("SDL3/windows/bin/x64/SDL3.dll", "../.out/SDL3.dll");
+    copy_file("StbTrueType/libstbtruetype.dll", "../.out/libstbtruetype.dll");
 }
 
 collect_build_args :: (using build_args: *Build_Args) {

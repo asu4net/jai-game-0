@@ -389,7 +389,7 @@ slz_entity :: (builder : *String_Builder, entity : Entity) {
 
 //#NOTE_asuarez: It allocates the string on the temp storage
 dlz_entity_from_file :: inline (path: string, autopath: bool = true) -> Entity {
-    src := ifx autopath then String.join("assets/entities/", path, ".json" ,,temp) else path;
+    src := ifx autopath then String.join("../data/entities/", path, ".json" ,,temp) else path;
     entity_str, success := File.read_entire_file(src ,,temp);
     if !success
     then return NULL_ENTITY;

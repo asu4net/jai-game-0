@@ -1,4 +1,4 @@
-DEF_FONT_PATH :: "assets/fonts/AlbertSans-VariableFont_wght.ttf"; 
+DEF_FONT_PATH :: "../data/fonts/AlbertSans-VariableFont_wght.ttf"; 
 
 Glyph :: struct {
     quad           : AlignedQuad;

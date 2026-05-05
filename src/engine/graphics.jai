@@ -1,5 +1,5 @@
-ATLAS_SRC_DIR   :: "assets/images";
-ATLAS_DST_DIR   :: "assets/atlas";
+ATLAS_SRC_DIR   :: "../data/images";
+ATLAS_DST_DIR   :: "../data/atlas";
 ATLAS_NAME      :: "atlas";
 
 #load "graphics/backend/opengl.jai";

@@ -78,7 +78,7 @@ generate_comp_time_input_map :: () -> string {
 
     cwd := get_working_directory();
 
-    ASSETS_DIR :: "bin/assets";
+    ASSETS_DIR :: "../data";
 
     assets_dir_created := File.make_directory_if_it_does_not_exist(ASSETS_DIR, recursive = true);
     if !assets_dir_created {
@@ -89,7 +89,7 @@ generate_comp_time_input_map :: () -> string {
     set_working_directory("bin");
     defer set_working_directory(cwd);
     
-    INPUT_ACTION_MAP_SRC :: "assets/input_map.txt";
+    INPUT_ACTION_MAP_SRC :: "../data/input_map.txt";
 
     log("Looking for input action map in [%]", INPUT_ACTION_MAP_SRC);
     if File_Utils.file_exists(INPUT_ACTION_MAP_SRC) {
