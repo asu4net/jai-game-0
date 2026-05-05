@@ -1,0 +1,47 @@
+{
+    "folders": [
+        { 
+            "path": "." 
+        }
+    ],
+    "tasks": 
+    {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "build",
+                "command": "jai",
+                "type": "shell",
+                "args": [
+                    "build.jai",
+                    "-",
+                    "-ecs",
+                    "-imgui",
+                    "-editor",
+                ],
+                "presentation": {
+                    "reveal": "always",
+                    "clear": true
+                },
+                "group": {
+                    "kind": "build",
+                    "isDefault": true,
+                }
+            }
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "cppvsdbg",
+                "request": "launch",
+                "name": "debug",
+                "console": "externalTerminal",
+                "program": "${workspaceFolder}/bin/game.exe",
+                "args": [],
+                "cwd": "${workspaceFolder}/bin",
+            }
+        ]
+    }
+}

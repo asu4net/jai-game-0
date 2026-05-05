@@ -1,18 +1,10 @@
-# Sublime Text
-*.sublime-workspace
-*.sublime-project
-
-# Vs Code
-*.code-workspace
-*.vscode
-
-# Jai ignore folders
+# Jai ignore folders.
 .build/
 
-# Generated assets
+# Generated assets.
 atlas/
 
-**.exe
-
-# ImGui specific
-imgui.ini
+# Frecuent binaries.
+bin/**.exe
+bin/**.pdb
+bin/imgui.ini
