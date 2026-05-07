@@ -10,7 +10,6 @@ Build_Flags :: enum_flags {
     RELEASE;
     IMGUI;
     EDITOR;
-    ECS;
     QUIET;
 }
 
@@ -83,7 +82,6 @@ collect_build_args :: (using build_args: *Build_Args) {
             case "-release";  flags |= .RELEASE;
             case "-imgui";    flags |= .IMGUI;
             case "-editor";   flags |= .EDITOR;
-            case "-ecs";      flags |= .ECS;
             case "-quiet";    flags |= .QUIET;
             case; log("Unrecognized option % \n", arg);
         }
@@ -108,26 +106,22 @@ setup_workspace :: (build_args : Build_Args) -> Workspace {
     }
     if build_args.flags & .QUIET {
         options.text_output_flags = 0;
-        if build_args.flags & .ECS {
-            ecs_generate_quiet = true;    
-        }
+        ecs_generate_quiet = true;    
     }
     set_build_options(options, w);
     add_build_file(build_args.build_file, w);
     add_build_string(tprint("DEBUG  :: %;", (build_args.flags & .DEBUG)  .(bool)), w);
     add_build_string(tprint("IMGUI  :: %;", (build_args.flags & .IMGUI)  .(bool)), w);
     add_build_string(tprint("EDITOR :: %;", (build_args.flags & .EDITOR) .(bool)), w);
-    add_build_string(tprint("ECS    :: %;", (build_args.flags & .ECS)    .(bool)), w);
     return w;
 }
 
 wait_until_workspace_has_finished :: (w: Workspace, args: Build_Args) {
     log("Building %...", get_build_options(w).output_executable_name);
     ended_with_errors := false;
-    ecs := (args.flags & .ECS).(bool);
     while true {
         message := compiler_wait_for_message();
-        if ecs then entity_process_compiler_message(w, message);
+        entity_process_compiler_message(w, message);
         if message.kind == .COMPLETE {
             log("Done building.");
             break;

@@ -54,7 +54,7 @@ generate_comp_time_atlas :: () -> string {
         return default_code();
     } 
 
-    set_working_directory("bin");
+    set_working_directory(".out");
     
     defer set_working_directory(cwd);
     atlas: Image_Atlas;

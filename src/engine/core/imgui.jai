@@ -87,7 +87,7 @@ draw_imgui :: inline () {
     }
 
     // TODO move this stuff to another place
-    #if EDITOR && ECS then draw_editor(); 
+    #if EDITOR then draw_editor(); 
     // User draw.
     if callbacks.draw then callbacks.draw();
 

@@ -67,12 +67,9 @@ run_app :: (name := "game", width := 1280, height := 720, vsync := true, bg_tint
     }
 
     init_renderer2d();
-
-    #if ECS then {
-        init_entity_storage();
-        init_collisions2d();
-        init_damage_registry();
-    }
+    init_entity_storage();
+    init_collisions2d();
+    init_damage_registry();
 
     update_viewport_and_frame_buffer();
 
@@ -109,20 +106,17 @@ run_app :: (name := "game", width := 1280, height := 720, vsync := true, bg_tint
         
         if should_tick_logic() && cbk.tick 
         then cbk.tick();
-        
-        #if ECS {
             
-            if should_tick_logic() {
-                tick_timer_components();
-            }
+        if should_tick_logic() {
+            tick_timer_components();
+        }
 
-            tick_atlas_animation_components();
+        tick_atlas_animation_components();
 
-            if should_tick_logic() {
-                tick_movement_component();
-                tick_collision2d_components();
-                tick_damage_components();
-            }
+        if should_tick_logic() {
+            tick_movement_component();
+            tick_collision2d_components();
+            tick_damage_components();
         }
 
         if should_tick_logic() && cbk.late_tick 
@@ -133,14 +127,12 @@ run_app :: (name := "game", width := 1280, height := 720, vsync := true, bg_tint
         clear_frame_buffer_color_and_depth(tint = clear_color);
         clear_frame_buffer_attachment(*fb, xx Attachment.PX_ID, S32_MAX);
         
-        #if ECS {
-            draw_sprite_entities();
-        } 
+        draw_sprite_entities();
         
         if cbk.draw 
         then cbk.draw();
         
-        #if EDITOR && ECS {
+        #if EDITOR {
             if performed(.TOGGLE_SHOW_COLLIDERS) {
                 show_colliders = !show_colliders;
             }
@@ -161,7 +153,7 @@ run_app :: (name := "game", width := 1280, height := 720, vsync := true, bg_tint
         #if IMGUI then draw_imgui();
         
         // Cleanup
-        #if ECS then clean_destroyed_entities();
+        clean_destroyed_entities();
         reset_temporary_storage();
         swap_buffers(*window);
     }    
@@ -197,11 +189,9 @@ end_app :: () -> bool {
     if running_logic && context.callbacks.end   
     then context.callbacks.end();
     
-    #if ECS then {
-        deinit_damage_registry();
-        deinit_collisions2d();
-        deinit_entity_storage();
-    }
+    deinit_damage_registry();
+    deinit_collisions2d();
+    deinit_entity_storage();
 
     // This texture is managed by the fb, there is no need to delete it.
     Initialize(*fb_tex);

@@ -1,7 +1,7 @@
 #load "engine/core.jai";
 #load "engine/graphics.jai";
+#load "engine/ecs.jai";
 
-#if ECS    #load "engine/ecs.jai";
 #if EDITOR #load "engine/editor.jai";
 
 #import "Basic"()(MEMORY_DEBUGGER = DEBUG);
