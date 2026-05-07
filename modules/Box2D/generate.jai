@@ -1,8 +1,10 @@
 #run, stallable {
 
-    module_path := "modules/Box2D/";
+    //module_path := "modules/Box2D/";
+    module_path := "./";
     c_path := join(module_path, "box2d/");
     c_src_path := join(c_path, "src/");
+    include_dir := join(c_path, "include");
     
     set_build_options_dc(.{do_output=false});
     root_options := get_build_options();
@@ -20,7 +22,6 @@
         if compile {
 
             make_directory_if_it_does_not_exist(build_dir);
-            include_dir := join(c_path, "include");
             lib_dir := join(build_dir, "Box2D.static");
 
             src_files: [..] string;
@@ -31,6 +32,17 @@
     }
 
     assert(success);
+
+    {
+        using opts: Generate_Bindings_Options;
+        array_add(*libraries, .{filename="box2d"});
+        files := file_list(tprint("%box2d/include", #filepath), true);
+        for file: files {
+            array_add(*source_files, file);
+        }
+        array_add(*extra_clang_arguments, "-x", "c++", "-DWIN32_LEAN_AND_MEAN", join("-I", include_dir));
+        generate_bindings(opts, "module.jai");
+    }
 
 }
 
@@ -64,3 +76,4 @@ has_files_with_extension :: (dir: string, extension: string) -> bool #expand {
 #import "File_Utilities";
 #import "BuildCpp";
 #import "String";
+#import "Bindings_Generator";
